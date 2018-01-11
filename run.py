@@ -80,6 +80,12 @@ def update_md5(md5_list, last_num, md5_path):
         for i in range(last_num, len(md5_list)):
             f.write(md5_list[i] + '\n')
 
+def rename_md5(dir):
+    file_list = glob.glob(dir + "\\*.png")
+    for file_name in file_list:
+        m = get_md5(file_name)
+        os.rename(file_name, dir + '\\' + m + '.png')
+
 
 def main(argv):
     if len(argv) > 3:
@@ -106,8 +112,10 @@ def main(argv):
     # 2. JUDGE image size
     batch_check_size(dst_temp)
     # 3. CHECK repetition by MD5
-    (md5_list, last_num) = batch_check_md5(md5_path, dst_temp)
-    update_md5(md5_list, last_num, md5_path)
+    rename_md5(dst_temp)
+
+    # (md5_list, last_num) = batch_check_md5(md5_path, dst_temp)
+    # update_md5(md5_list, last_num, md5_path)
     # 4. COPY temp to dst
     copy(dst_temp, dst_path)
 
