@@ -5,7 +5,7 @@ by andreashen (Eswai)
 
 ## 怎么做的？
 0. **Windows聚焦**的图片放在哪里？
-> 默认路径：`C:\\Users\\[用户名]\\AppData\\Local\\Packages\\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\\LocalState\\Assets`
+> 默认目录：`C:\Users\用户名\AppData\Local\Packages\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\LocalState\Assets`
 1. 直接复制出来就行吗？
 > 不行。该路径下的文件默认无扩展名，且并非全是锁屏界面背景，多次更新之后会存在不同名称的相同内容的图片
 2. 所以，整个流程是？
