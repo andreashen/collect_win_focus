@@ -44,15 +44,15 @@ def batch_check_size(path):
             check_size(file_name)
 
 
-def read_md5(path):
-    ans = list()
-    with open(path, 'r') as f:
-        for line in f.readlines():
-            if line[-1] == '\n' and len(line) == 33:
-                ans.append(line[:-1])
-            elif len(line) == 32 and line[-1] != '\n':
-                ans.append(line)
-    return ans
+# def read_md5(path):
+#     ans = list()
+#     with open(path, 'r') as f:
+#         for line in f.readlines():
+#             if line[-1] == '\n' and len(line) == 33:
+#                 ans.append(line[:-1])
+#             elif len(line) == 32 and line[-1] != '\n':
+#                 ans.append(line)
+#     return ans
 
 
 def get_md5(path):
@@ -62,23 +62,23 @@ def get_md5(path):
     return ans
 
 
-def batch_check_md5(md5_path, dst):
-    md5_list = read_md5(md5_path)
-    n = len(md5_list)
-    file_list = glob.glob(dst + '\\*.png')
-    for file_name in file_list:
-        m = get_md5(file_name)
-        if m in md5_list:
-            os.remove(file_name)
-        else:
-            md5_list.append(m)
-    return (md5_list, n)
+# def batch_check_md5(md5_path, dst):
+#     md5_list = read_md5(md5_path)
+#     n = len(md5_list)
+#     file_list = glob.glob(dst + '\\*.png')
+#     for file_name in file_list:
+#         m = get_md5(file_name)
+#         if m in md5_list:
+#             os.remove(file_name)
+#         else:
+#             md5_list.append(m)
+#     return (md5_list, n)
 
 
-def update_md5(md5_list, last_num, md5_path):
-    with open(md5_path, 'a') as f:
-        for i in range(last_num, len(md5_list)):
-            f.write(md5_list[i] + '\n')
+# def update_md5(md5_list, last_num, md5_path):
+#     with open(md5_path, 'a') as f:
+#         for i in range(last_num, len(md5_list)):
+#             f.write(md5_list[i] + '\n')
 
 def rename_md5(dir):
     file_list = glob.glob(dir + "\\*.png")
@@ -88,10 +88,10 @@ def rename_md5(dir):
 
 
 def main(argv):
-    if len(argv) > 3:
-        md5_path = sys.argv[3]
-    else:
-        md5_path = 'D:\\Users\\Eswai\\Pictures\\Wallpaper\\win_focus\\md5.txt'
+    # if len(argv) > 3:
+    #     md5_path = sys.argv[3]
+    # else:
+    #     md5_path = 'D:\\Users\\Eswai\\Pictures\\Wallpaper\\win_focus\\md5.txt'
 
     if len(argv) > 2:
         dst_path = sys.argv[2]
@@ -114,8 +114,10 @@ def main(argv):
     # 3. CHECK repetition by MD5
     rename_md5(dst_temp)
 
+    # 旧方案
     # (md5_list, last_num) = batch_check_md5(md5_path, dst_temp)
     # update_md5(md5_list, last_num, md5_path)
+
     # 4. COPY temp to dst
     copy(dst_temp, dst_path)
 
